@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -9,15 +10,20 @@ const useStyles = makeStyles(theme => ({
       width: 200,
     },
   },
+  button:{
+    margin: theme.spacing(1),
+    width: 200,
+    height: 45,
+  }
 }));
 
 export default function FormPropsTextFields() {
   const classes = useStyles();
 
   return (
-    <form className={classes.root}>
+    <div className={classes.root} >
       
-      <div>
+     
         <TextField
         id="standard-full-width"
         margin="normal"
@@ -60,11 +66,14 @@ export default function FormPropsTextFields() {
           variant="outlined"
           
         />
-        
+       
+         <Button className={classes.button} variant="contained" color="primary" m={4}>
+        Guardar
+      </Button>
 
         
         
-      </div>
-    </form>
+    
+    </div>
   );
 }
