@@ -4,43 +4,54 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid } from '@material-ui/core';
 import '../components/styles/badge.css'
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        '& .MuiTextField-root': {
+
+
+
+class FormPropsTextFields extends React.Component {
+
+    classes = makeStyles(theme => ({
+        root: {
+            '& .MuiTextField-root': {
+                margin: theme.spacing(1),
+                width: 200,
+            },
+        },
+        button: {
             margin: theme.spacing(1),
             width: 200,
-        },
-    },
-    button: {
-        margin: theme.spacing(1),
-        width: 200,
-        height: 45,
-        alignItemsAndJustifyContent: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-        },
-    }
-}));
+            height: 45,
+            
+        }
+    }));
+    
 
 
-
-
-function FormPropsTextFields() {
-    const classes = useStyles();
-
-    const handleChange = (evento)=>{
-        console.log({value: evento.target.value});
+    handleChange = evento => {
+        //con esto veo el input que relleno y el valor asignado!
+        /*console.log({
+            value: evento.target.value,
+            name: evento.target.name
+        });*/
+    
+       /*this.setState({
+            [evento.target.name] : [evento.taret.value],
+        });*/
+        
     }
 
+    handleClick = evento => {
+        console.log("click");
+    }
 
+
+    render(){
     return (
         <div className="Badge">
-            <div className={classes.root} >
+            <div className={this.classes.root} >
 
                 <h1>Nueva firma: </h1>
                 <TextField
-                    onChange={handleChange}
+                    onChange={this.handleChange}
                     margin="normal"
                     name="nombre"
                     className="nombre"
@@ -50,7 +61,7 @@ function FormPropsTextFields() {
 
                 />
                 <TextField
-                    onChange={handleChange}
+                    onChange={this.handleChange}
                     name="apellido"
                     className="apellido"
                     label="Apellido"
@@ -59,7 +70,7 @@ function FormPropsTextFields() {
 
                 />
                 <TextField
-                    onChange={handleChange}
+                    onChange={this.handleChange}
                     name="posicion"
                     className="posicion"
                     label="Posicion"
@@ -68,7 +79,7 @@ function FormPropsTextFields() {
 
                 />
                 <TextField
-                    onChange={handleChange}
+                    onChange={this.handleChange}
                     name="telefono"
                     className="telefono"
                     label="Telefono"
@@ -77,7 +88,7 @@ function FormPropsTextFields() {
 
                 />
                 <TextField
-                    onChange={handleChange}
+                    onChange={this.handleChange}
                     name="email"
                     className="email"
                     label="Email"
@@ -85,11 +96,17 @@ function FormPropsTextFields() {
                     variant="outlined"
 
                 />
+                <TextField
+                    onChange={this.handleChange}
+                    name="avatar"
+                    className="avatar"
+                    label="Avatar URL"
+                    defaultValue=""
+                    variant="outlined"
+                />
 
-                <Grid item />
-                <Grid item />
 
-                <Button className={classes.button} variant="contained" color="primary">
+                <Button className={this.classes.button} variant="contained" color="primary" onClick={this.handleClick}>
                     Guardar
       </Button>
 
@@ -97,7 +114,7 @@ function FormPropsTextFields() {
 
             </div>
         </div>
-    );
+    );}
 }
 
 
