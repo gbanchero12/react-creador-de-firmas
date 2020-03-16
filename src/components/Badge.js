@@ -3,11 +3,7 @@ import './styles/badge.css'
 import logoAsse from '../images/logoASSE.svg';
 import avatar from '../images/download.png';
 
-const data = {
-  posicion: "React Developer",
-  contacto: "099 093 041",
-  email:"gbanchero@hexa.com.uy"
-}
+
 
 class Badge extends React.Component {
   render(props) {
@@ -27,14 +23,14 @@ class Badge extends React.Component {
 
         <div className="Badge__section-info">
           <p>
-            {data.posicion}
+            {this.props.position}
           </p>
-          <p>{data.contacto}</p>
+          <p>{this.props.contacto}</p>
         </div>
 
         <div className="Badge__footer">
 
-    <p>{data.email}</p>
+    <p>{this.props.email}</p>
         </div>
 
       </div>
