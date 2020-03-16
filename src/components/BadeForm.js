@@ -1,28 +1,40 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Button, Grid } from '@material-ui/core';
 import '../components/styles/badge.css'
 
-
+const styles = theme => ({
+    root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: 200,
+        },
+    },
+    button: {
+        margin: theme.spacing(1),
+        width: 200,
+        height: 45,
+        
+    }
+  });
 
 
 class FormPropsTextFields extends React.Component {
-
-    classes = makeStyles(theme => ({
-        root: {
-            '& .MuiTextField-root': {
-                margin: theme.spacing(1),
-                width: 200,
-            },
-        },
-        button: {
-            margin: theme.spacing(1),
-            width: 200,
-            height: 45,
-            
+    constructor() {
+        super()
+    
+        this.state = {
+          nombre: '',
+          apellido: '',
+          telefono: '',
+          posicion:'',
+          email:'',
+          avatar:''
         }
-    }));
+      }
+
+    
     
 
 
@@ -33,10 +45,10 @@ class FormPropsTextFields extends React.Component {
             name: evento.target.name
         });*/
     
-       /*this.setState({
-            [evento.target.name] : [evento.taret.value],
-        });*/
-        
+       this.setState({
+            [evento.target.name] : [evento.target.value],
+        });
+        console.log(this.state);
     }
 
     handleClick = evento => {
@@ -45,13 +57,16 @@ class FormPropsTextFields extends React.Component {
 
 
     render(){
+    
+        const { classes } = this.props;
+    
     return (
         <div className="Badge">
-            <div className={this.classes.root} >
+            <div className={classes.root} >
 
                 <h1>Nueva firma: </h1>
                 <TextField
-                    onChange={this.handleChange}
+                    onChange={this.handleChange.bind(this)}
                     margin="normal"
                     name="nombre"
                     className="nombre"
@@ -61,7 +76,7 @@ class FormPropsTextFields extends React.Component {
 
                 />
                 <TextField
-                    onChange={this.handleChange}
+                    onChange={this.handleChange.bind(this)}
                     name="apellido"
                     className="apellido"
                     label="Apellido"
@@ -70,7 +85,7 @@ class FormPropsTextFields extends React.Component {
 
                 />
                 <TextField
-                    onChange={this.handleChange}
+                    onChange={this.handleChange.bind(this)}
                     name="posicion"
                     className="posicion"
                     label="Posicion"
@@ -79,7 +94,7 @@ class FormPropsTextFields extends React.Component {
 
                 />
                 <TextField
-                    onChange={this.handleChange}
+                    onChange={this.handleChange.bind(this)}
                     name="telefono"
                     className="telefono"
                     label="Telefono"
@@ -88,7 +103,7 @@ class FormPropsTextFields extends React.Component {
 
                 />
                 <TextField
-                    onChange={this.handleChange}
+                    onChange={this.handleChange.bind(this)}
                     name="email"
                     className="email"
                     label="Email"
@@ -97,7 +112,7 @@ class FormPropsTextFields extends React.Component {
 
                 />
                 <TextField
-                    onChange={this.handleChange}
+                    onChange={this.handleChange.bind(this)}
                     name="avatar"
                     className="avatar"
                     label="Avatar URL"
@@ -106,7 +121,7 @@ class FormPropsTextFields extends React.Component {
                 />
 
 
-                <Button className={this.classes.button} variant="contained" color="primary" onClick={this.handleClick}>
+                <Button className={classes.button} variant="contained" color="primary" onClick={this.handleClick}>
                     Guardar
       </Button>
 
@@ -118,4 +133,4 @@ class FormPropsTextFields extends React.Component {
 }
 
 
-export default FormPropsTextFields;
+export default withStyles(styles)(FormPropsTextFields);
